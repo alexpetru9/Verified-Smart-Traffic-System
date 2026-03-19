@@ -1,22 +1,26 @@
 # 🚦 Verified Smart Traffic System (K Framework & Django)
 
-Acest proiect implementează un sistem de control al traficului rutier care utilizează **Metode Formale** pentru a garanta siguranța tranzițiilor între stările semafoarelor. Inovația constă în utilizarea **K Framework** pentru verificarea în timp real (Runtime Verification) a deciziilor luate de aplicația web.
+This project implements a road traffic control system that utilizes **Formal Methods** to guarantee the safety of transitions between traffic light states. The innovation lies in using the **K Framework** for real-time (Runtime Verification) of decisions made by the web application.
 
-## 🛠️ Tehnologii Utilizate
-* **Backend:** Django (Python) - Gestionarea simulării și interfeței.
-* **Formal Verification:** K Framework - Definirea regulilor matematice de rescriere.
-* **Interfață:** HTML/CSS (Monitorizare în timp real).
-* **Protocol:** Integrare între Python și motorul de verificare K.
 
-## 🧠 Cum funcționează?
-Spre deosebire de un sistem clasic, acest sistem nu schimbă culoarea semaforului direct. 
-1. **Intercepție:** Orice cerere de schimbare a stării (ex. Verde -> Galben) este interceptată.
-2. **Verificare Formale:** Cererea este trimisă către **K Framework**.
-3. **Validare:** Dacă tranziția respectă regulile de siguranță definite matematic (nu există conflicte de verde), K Framework aprobă starea.
-4. **Execuție:** Doar după aprobare, sistemul actualizează interfața vizuală.
 
-## 🛡️ Siguranță Garantată
-Sistemul previne erorile umane sau de logică software prin demonstrarea matematică a faptului că sistemul nu va intra niciodată într-o stare nesigură (ex. semafoare verzi simultan pe direcții conflictuale).
+## 🛠️ Technologies Used
+* **Backend:** Django (Python) - Simulation and interface management.
+* **Formal Verification:** K Framework - Definition of mathematical rewriting rules.
+* **Interface:** HTML/CSS (Real-time monitoring).
+* **Protocol:** Integration between Python and the K verification engine.
+
+## 🧠 How It Works
+Unlike a traditional system, this system does not change the traffic light color directly. 
+1. **Interception:** Any state change request (e.g., Green -> Yellow) is intercepted.
+2. **Formal Verification:** The request is sent to the **K Framework**.
+3. **Validation:** If the transition respects the mathematically defined safety rules (no green conflicts), the K Framework approves the state.
+4. **Execution:** Only after approval does the system update the visual interface.
+
+
+
+## 🛡️ Guaranteed Safety
+The system prevents human error or software logic bugs by mathematically proving that the system will never enter an unsafe state (e.g., simultaneous green lights on conflicting directions).
 
 ---
-*Proiect realizat pentru disciplina "Software Engineering" la UTCN.*
+*Project developed for the "Software Engineering" course at UTCN.*
