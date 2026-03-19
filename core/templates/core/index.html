@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Traffic Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #eef2f3; padding: 20px; text-align: center; }
+        h1 { color: #2c3e50; }
+        
+        #dashboard-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 20px; }
+        
+        .intersection { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 15px; 
+            width: 340px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            transition: transform 0.2s;
+        }
+        .intersection:hover { transform: translateY(-5px); }
+        
+        .layout { display: grid; grid-template-columns: 60px 1fr 60px; grid-template-rows: 60px 1fr 60px; background: #34495e; width: 280px; height: 280px; margin: 15px auto; border-radius: 10px; align-items: center; justify-items: center;}
+        .post { background: #222; padding: 6px; border-radius: 8px; }
+        .light { width: 35px; height: 35px; border-radius: 50%; background: #555; border: 2px solid #111; transition: background 0.3s, box-shadow 0.3s; }
+        
+        .top { grid-row: 1; grid-column: 2; } .bottom { grid-row: 3; grid-column: 2; }
+        .left { grid-row: 2; grid-column: 1; } .right { grid-row: 2; grid-column: 3; }
+        
+        /* Culori lumini */
+        .NS_GREEN .top .light, .NS_GREEN .bottom .light { background: #2ecc71; box-shadow: 0 0 20px #2ecc71; }
+        .NS_YELLOW .top .light, .NS_YELLOW .bottom .light { background: #f1c40f; box-shadow: 0 0 20px #f1c40f; }
+        .EW_GREEN .left .light, .EW_GREEN .right .light { background: #2ecc71; box-shadow: 0 0 20px #2ecc71; }
+        .EW_YELLOW .left .light, .EW_YELLOW .right .light { background: #f1c40f; box-shadow: 0 0 20px #f1c40f; }
+        .ALL_RED .light { background: #c0392b; opacity: 0.5; } 
+        /* La all red facem luminile roșii puțin mai vizibile sau le lăsăm stinse, cum preferi. Aici le las stinse (default) și doar logica le aprinde */
+        
+        .controls { display: flex; gap: 10px; justify-content: center; margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;}
+        
+        button { 
+            padding: 8px 12px; 
+            font-size: 14px; 
+            cursor: pointer; 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            font-weight: bold;
+        }
+        .btn-normal { background: #3498db; }
+        .btn-normal:hover { background: #2980b9; }
+        .btn-peak { background: #e67e22; }
+        .btn-peak:hover { background: #d35400; }
+        
+        .timer { color: #e74c3c; font-weight: bold; font-size: 1.4em; }
+        .status-badge { background: #ecf0f1; padding: 4px 8px; border-radius: 4px; font-size: 0.9em; color: #7f8c8d; }
+    </style>
+</head>
+<body>
+    <h1>🚦 Control Trafic Individual</h1>
+    {% csrf_token %}
+    
+    <div id="dashboard-container">Loading intersections...</div>
+
+    <script>
+        const container = document.getElementById('dashboard-container');
+
+        async function update() {
+            try {
+                const res = await fetch('/api/intersection-state/');
+                const data = await res.json();
+                
+                container.innerHTML = '';
+
+                data.forEach(int => {
+                    const html = `
+                        <div class="intersection ${int.current_phase}">
+                            <h2>${int.name}</h2>
+                            <p><span class="status-badge">Plan: ${int.active_plan_name || 'Manual/Stop'}</span></p>
+                            <p>Timp fază: <span class="timer">${int.time_remaining}</span>s</p>
+                            
+                            <div class="layout">
+                                <div class="post top"><div class="light"></div></div>
+                                <div class="post left"><div class="light"></div></div>
+                                <div class="post right"><div class="light"></div></div>
+                                <div class="post bottom"><div class="light"></div></div>
+                            </div>
+
+                            <div class="controls">
+                                <button class="btn-normal" onclick="setPlan(${int.id}, 'Normal Plan')">Normal</button>
+                                <button class="btn-peak" onclick="setPlan(${int.id}, 'Peak Plan')">Peak</button>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+
+            } catch (e) { console.error(e); }
+        }
+
+        async function setPlan(id, planName) {
+            const token = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            // Trimitem ID-ul specific al intersecției
+            await fetch('/api/set-intersection-plan/', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json', 'X-CSRFToken': token},
+                body: JSON.stringify({
+                    intersection_id: id, 
+                    plan_name: planName
+                })
+            });
+            update(); // Actualizăm imediat
+        }
+
+        setInterval(update, 1000);
+        update();
+    </script>
+</body>
+</html>

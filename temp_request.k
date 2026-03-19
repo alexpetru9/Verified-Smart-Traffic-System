@@ -1,0 +1,1 @@
+check(NS_GREEN, NS_YELLOW)

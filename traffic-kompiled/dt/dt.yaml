@@ -1,0 +1,112 @@
+default: null
+specializations:
+- - Lbl'-LT-'generatedTop'-GT-'{}
+  - default: null
+    specializations:
+    - - Lbl'-LT-'k'-GT-'{}
+      - default: fail
+        specializations:
+        - - kseq{}
+          - default: fail
+            specializations:
+            - - inj{SortCommand{}, SortKItem{}}
+              - default: null
+                specializations:
+                - - Lblcheck'LParUndsCommUndsRParUnds'TRAFFIC'Unds'Command'Unds'Color'Unds'Color{}
+                  - default: null
+                    specializations:
+                    - - LblEW'Unds'GREEN'Unds'TRAFFIC'Unds'Color{}
+                      - default: fail
+                        specializations:
+                        - - LblALL'Unds'RED'Unds'TRAFFIC'Unds'Color{}
+                          - action:
+                            - 117
+                            - - - &id001 ['1', '1']
+                                - STRING.String
+                              - - &id002 ['1', '0', '0', '1']
+                                - STRING.String
+                          - []
+                        sort: STRING.String
+                        occurrence: &id003 ['0', '0', '0', '0', '0', '1']
+                      - []
+                    - - LblNS'Unds'GREEN'Unds'TRAFFIC'Unds'Color{}
+                      - default: fail
+                        specializations:
+                        - - LblALL'Unds'RED'Unds'TRAFFIC'Unds'Color{}
+                          - action:
+                            - 118
+                            - - - *id001
+                                - STRING.String
+                              - - *id002
+                                - STRING.String
+                          - []
+                        sort: STRING.String
+                        occurrence: *id003
+                      - []
+                    - - LblEW'Unds'YELLOW'Unds'TRAFFIC'Unds'Color{}
+                      - default: fail
+                        specializations:
+                        - - LblEW'Unds'GREEN'Unds'TRAFFIC'Unds'Color{}
+                          - action:
+                            - 119
+                            - - - *id001
+                                - STRING.String
+                              - - *id002
+                                - STRING.String
+                          - []
+                        sort: STRING.String
+                        occurrence: *id003
+                      - []
+                    - - LblALL'Unds'RED'Unds'TRAFFIC'Unds'Color{}
+                      - default: fail
+                        specializations:
+                        - - LblEW'Unds'YELLOW'Unds'TRAFFIC'Unds'Color{}
+                          - action:
+                            - 120
+                            - - - *id001
+                                - STRING.String
+                              - - *id002
+                                - STRING.String
+                          - []
+                        - - LblNS'Unds'YELLOW'Unds'TRAFFIC'Unds'Color{}
+                          - action:
+                            - 122
+                            - - - *id001
+                                - STRING.String
+                              - - *id002
+                                - STRING.String
+                          - []
+                        sort: STRING.String
+                        occurrence: *id003
+                      - []
+                    - - LblNS'Unds'YELLOW'Unds'TRAFFIC'Unds'Color{}
+                      - default: fail
+                        specializations:
+                        - - LblNS'Unds'GREEN'Unds'TRAFFIC'Unds'Color{}
+                          - action:
+                            - 121
+                            - - - *id001
+                                - STRING.String
+                              - - *id002
+                                - STRING.String
+                          - []
+                        sort: STRING.String
+                        occurrence: *id003
+                      - []
+                    sort: STRING.String
+                    occurrence: ['1', '0', '0', '0', '0', '1']
+                  - [STRING.String, STRING.String]
+                sort: STRING.String
+                occurrence: ['0', '0', '0', '0', '1']
+              - [STRING.String]
+            sort: STRING.String
+            occurrence: ['0', '0', '0', '1']
+          - [STRING.String, STRING.String]
+        sort: STRING.String
+        occurrence: ['0', '0', '1']
+      - [STRING.String]
+    sort: STRING.String
+    occurrence: ['0', '1']
+  - [STRING.String, STRING.String]
+sort: STRING.String
+occurrence: ['1']

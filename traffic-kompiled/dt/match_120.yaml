@@ -1,0 +1,48 @@
+default: null
+specializations:
+- - Lbl'-LT-'generatedTop'-GT-'{}
+  - default: null
+    specializations:
+    - - Lbl'-LT-'k'-GT-'{}
+      - default: fail
+        specializations:
+        - - kseq{}
+          - default: fail
+            specializations:
+            - - inj{SortCommand{}, SortKItem{}}
+              - default: null
+                specializations:
+                - - Lblcheck'LParUndsCommUndsRParUnds'TRAFFIC'Unds'Command'Unds'Color'Unds'Color{}
+                  - default: fail
+                    specializations:
+                    - - LblALL'Unds'RED'Unds'TRAFFIC'Unds'Color{}
+                      - default: fail
+                        specializations:
+                        - - LblEW'Unds'YELLOW'Unds'TRAFFIC'Unds'Color{}
+                          - action:
+                            - 120
+                            - - - ['1', '1']
+                                - STRING.String
+                              - - ['1', '0', '0', '1']
+                                - STRING.String
+                          - []
+                        sort: STRING.String
+                        occurrence: ['0', '0', '0', '0', '0', '1']
+                      - []
+                    sort: STRING.String
+                    occurrence: ['1', '0', '0', '0', '0', '1']
+                  - [STRING.String, STRING.String]
+                sort: STRING.String
+                occurrence: ['0', '0', '0', '0', '1']
+              - [STRING.String]
+            sort: STRING.String
+            occurrence: ['0', '0', '0', '1']
+          - [STRING.String, STRING.String]
+        sort: STRING.String
+        occurrence: ['0', '0', '1']
+      - [STRING.String]
+    sort: STRING.String
+    occurrence: ['0', '1']
+  - [STRING.String, STRING.String]
+sort: STRING.String
+occurrence: ['1']
